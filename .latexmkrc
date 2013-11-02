@@ -10,7 +10,7 @@ sub run_makeglossaries {
   };
 }
 
-@default_files = ('tcc');
+@default_files = ('tcc-poster');
 
 # Use pdflatex
 $pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode --shell-escape %O %S';
