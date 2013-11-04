@@ -87,40 +87,41 @@
 \setbeamertemplate{headline}{
   \leavevmode
 
-  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=2cm,rightskip=2cm]{headline}
     \begin{columns}[T]
 
-      % padding
-      \begin{column}{.02\paperwidth}
-      \end{column}
-
-      \begin{column}{.07\paperwidth}
+      \begin{column}{.2\paperwidth}
         \begin{center}
           \includegraphics[scale=.2]{logo-usp.png}
+          \hskip2cm
           \includegraphics[scale=.04]{logo-ime.png}
+          \hfill
+          %\includegraphics[width=.6\linewidth]{logos/i6-hks44}
         \end{center}
-        %\vskip1ex
+        \vskip1ex
       \end{column}
 
-      \begin{column}{.675\paperwidth}
-        \vskip8ex
+      \begin{column}{.55\paperwidth}
+        \hfill
+        \vskip6ex
         \raggedleft
-        \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[1ex]}
-        \vskip3ex
+        \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[2ex]}
         \usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
         \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}
       \end{column}
 
-      \begin{column}{.25\paperwidth}
-        \vskip1cm
+
+      \begin{column}{.2\paperwidth}
         \begin{center}
-          %\includegraphics[scale=.04]{logo-ime.png}
+          \includegraphics[scale=.12]{transmission.png}
+          \hskip2cm
+          \includegraphics[scale=.07]{gnu.png}
+          \hfill
+          %\includegraphics[width=.6\linewidth]{logos/i6-hks44}
         \end{center}
-        \vskip1.5cm
+        \vskip1ex
       \end{column}
 
-      \begin{column}{.03\paperwidth}
-      \end{column}
     \end{columns}
   \end{beamercolorbox}
 
@@ -150,8 +151,13 @@
   \end{beamercolorbox}
 
   \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{footline}%
-    Lehrstuhl f\"ur Informatik 6 - Computer Science Department - RWTH Aachen University - Aachen, Germany \hfill Mail: \texttt{<surname>@cs.rwth-aachen.de} \hfill WWW: \texttt{http://www-i6.informatik.rwth-aachen.de}
-    \vskip1ex
+    IME-USP
+    \hfill
+    Rede Linux IME: \texttt{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}paulochf}
+    \hfill
+    E-mail:
+    \texttt{paulochf@gmail.com}
+    \vskip.6ex
   \end{beamercolorbox}
 
   \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
