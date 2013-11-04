@@ -1,30 +1,40 @@
-\documentclass[final]{beamer}
+%% -------------------------------------------------------------------------------------
+%% tcc-poster.tex -- MAIN FILE
+%% -------------------------------------------------------------------------------------
+
+% Based from example code found in
+% http://www-i6.informatik.rwth-aachen.de/~dreuw/latexbeamerposter.php
+%=========================================================================
+\documentclass[final,brazil]{beamer}
 \usepackage{grffile}
 \mode<presentation>{\usetheme{I6dv}}
-\usepackage[english]{babel}
-\usepackage[latin1]{inputenc}
-\usepackage{amsmath,amsthm, amssymb, latexsym}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage{amsmath,amsthm, amssymb, latexsym}
 %\usepackage{times}\usefonttheme{professionalfonts}  % obsolete
 %\usefonttheme[onlymath]{serif}
-\boldmath
-\usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
+%\boldmath
+\usepackage[orientation=landscape,size=a2,scale=1,debug]{beamerposter}
 % change list indention level
 % \setdefaultleftmargin{3em}{}{}{}{}{}
 
-
-%\usepackage{snapshot} % will write a .dep file with all dependencies, allows for easy bundling
-
 \usepackage{array,booktabs,tabularx}
-\newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
-\newcommand{\pphantom}{\textcolor{ta3aluminium}} % phantom introduces a vertical space in p formatted table columns??!!
+\usepackage[unicode]{hyperref}
+
+% centered tabularx columns
+\newcolumntype{Z}{>{\centering\arraybackslash}X}
+% phantom introduces a vertical space in p formatted table columns??!!
+\newcommand{\pphantom}{\textcolor{ta3aluminium}}
+
+\newcommand{\mytilde}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
+%\newcommand{\til}{\texttildelow}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\graphicspath{{figures/}}
+\graphicspath{{figs/}}
 
-\title{\huge SURF-Face: Face Recognition Under Viewpoint Consistency Constraints}
-\author{Philippe Dreuw, Pascal Steingrube, Harald Hanselmann and Hermann Ney}
-\institute[RWTH Aachen University]{Human Language Technology and Pattern Recognition, RWTH Aachen University, Aachen, Germany}
-\date[Sep. 8th, 2009]{Sep. 8th, 2009}
+\title{\huge Anatomia do BitTorrent: a Ciência da Computação por trás do protocolo}
+\author{Paulo Cheadi Haddad Filho --- \,\mytilde paulochf}
+\institute[Universidade de São Paulo]{Orientador: José Coelho de Pina --- \quad \mytilde coelho}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newlength{\columnheight}
@@ -37,6 +47,364 @@
   \begin{columns}
     % ---------------------------------------------------------%
     % Set up a column
+    \begin{column}{.49\textwidth}
+      \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
+        \begin{minipage}[T]{.95\textwidth}  % tweaks the width, makes a new \textwidth
+          \parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
+            % Since all columns are the same length, it is all nice and tidy.  You have to get the height empirically
+            % ---------------------------------------------------------%
+            % fill each column with content
+            \begin{block}{Introduction}
+              \begin{itemize}
+              \item Most face recognition approaches are sensitive to registration errors
+                \begin{itemize}
+                \item rely on a very good initial alignment and illumination
+                \end{itemize}
+              \item We propose/analyze:
+                \begin{itemize}
+                \item grid-based and dense extraction of local features
+                \item block-based matching accounting for different\\
+                    viewpoints and registration errors
+                \end{itemize}
+              \end{itemize}
+            \end{block}
+            \vfill
+            \begin{block}{Feature Extraction}
+              \begin{columns}
+                \begin{column}{.55\textwidth}
+                  \begin{itemize}
+                  \item Interest point based feature extraction
+                    \begin{itemize}
+                    \item SIFT or SURF interest point detector
+                    \item leads to a \alert{very sparse} description
+                    \end{itemize}
+                  \item Grid-based feature extraction
+                    \begin{itemize}
+                    \item overlaid regular grid
+                    \item leads to a \alert{dense} description
+                    \end{itemize}
+                  \end{itemize}
+                \end{column}
+                \begin{column}{.44\textwidth}
+                  \centering
+                  \begin{tabularx}{\linewidth}{ZZZ}
+                     Orig.
+                     &
+                     IP
+                     &
+                     Grid
+                     \\
+                    \includegraphics[width=0.95\linewidth]{images/viola/m-012-1.png}
+                    &
+                    \includegraphics[width=0.95\linewidth]{images/viola/surf-64x64-ip/m-012-1.pngsurf.png}
+                    &
+                    \includegraphics[width=0.95\linewidth]{images/viola/surf-64x64-4/m-012-1.pngsurf.png}
+                    \\
+                    \includegraphics[width=0.95\linewidth]{images/viola/m-012-2.png}
+                    &
+                    \includegraphics[width=0.95\linewidth]{images/viola/surf-64x64-ip/m-012-2.pngsurf.png}
+                    &
+                    \includegraphics[width=0.95\linewidth]{images/viola/surf-64x64-4/m-012-2.pngsurf.png}
+                    \\
+                  \end{tabularx}
+                \end{column}
+              \end{columns}
+              \vskip-1ex
+            \end{block}
+            \vfill
+            \begin{block}{Feature Description}
+              \begin{itemize}
+              \item Scale Invariant Feature Transform (SIFT)
+                \begin{itemize}
+                \item 128-dimensional descriptor, histogram of gradients, scale invariant
+                \end{itemize}
+              \item Speeded Up Robust Features (SURF)
+                \begin{itemize}
+                \item 64-dimensional descriptor, histogram of gradients, scale invariant
+                \end{itemize}
+              \item face recognition: invariance w.r.t. rotation is often not necessary
+                \begin{itemize}
+                \item rotation dependent upright-versions U-SIFT, U-SURF-64, U-SURF-128
+                \end{itemize}
+              \end{itemize}
+            \end{block}
+            \vfill
+            \begin{block}{Feature Matching}
+              \begin{itemize}
+              \item Recognition by Matching
+                \begin{itemize}
+                \item nearest neighbor matching strategy
+                \item descriptor vectors extracted at keypoints in a test image $X$ are compared to all descriptor vectors extracted at keypoints from the reference images $Y_n, n=1,\cdots,N$ by the Euclidean distance
+                \item decision rule:
+                  \begin{align*}
+                    X \rightarrow r(X) & = \arg \max_{c} \Big\{ \max_n \big\{ \sum_{x_i \in X} \delta(x_i,Y_{n,c})\big\} \Big\}
+                  \end{align*}
+                \item additionally, a ratio constraint is applied in $\delta(x_i,Y_{n,c})$
+                \end{itemize}
+              \item Viewpoint Matching Constraints
+                \begin{itemize}
+                \item maximum matching: unconstrained
+                \item grid-based matching: absolute box constraints
+                \item grid-based best matching: absolute box constraints, overlapping
+                \end{itemize}
+              \item Postprocessing
+                \begin{itemize}
+                \item RANSAC-based outlier removal
+                \item RANSAC-based system combination
+                \end{itemize}
+              \end{itemize}
+            \end{block}
+            \vfill
+            \begin{block}{Matching Examples for the AR-Face and CMU-PIE Database}
+              \begin{figure}
+                \footnotesize
+                \centering
+                \begin{tabular}{p{.09\linewidth} | p{.12\linewidth} | p{.12\linewidth} | p{.12\linewidth} || p{.12\linewidth} | p{.12\linewidth} | p{.12\linewidth} | p{.09\linewidth} }
+                  Feature
+                  &
+                  Maximum
+                  &
+                  Grid
+                  &
+                  Grid-Best
+                  &
+                  Maximum
+                  &
+                  Grid
+                  &
+                  Grid-Best
+                  &
+                  Feature
+                  \\
+                  \hline
+                  SIFT
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-sift/maximum_m-005-17.pgm--w-052-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-sift/grid_m-005-17.pgm--m-005-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-sift/grid-best_m-005-17.pgm--m-005-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-surf/maximum_07-27-22.pgm--04-27-08}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-surf/grid_07-27-22.pgm--07-27-08}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-surf/grid-best_07-27-22.pgm--07-27-08}
+                  &
+                  SURF
+                  \\
+                  \hline
+                  U-SIFT
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-usift/maximum_m-005-17.pgm--w-052-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-usift/grid_m-005-17.pgm--m-005-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-usift/grid-best_m-005-17.pgm--m-005-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-usurf/maximum_07-27-22.pgm--04-27-08}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-usurf/grid_07-27-22.pgm--07-27-08}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-usurf/grid-best_07-27-22.pgm--07-27-08}
+                  &
+                  U-SURF
+                  \\
+                  \hline
+                \end{tabular}
+              \end{figure}
+              \begin{itemize}
+              \item Matching results for the AR-Face (left) and the CMU-PIE database (right)
+                \begin{itemize}
+                \item maximum matching show false classification examples
+                \item grid matchings show correct classification examples
+                \item upright descriptor versions reduce the number of false matches
+                \end{itemize}
+              \end{itemize}
+            \end{block}
+          }
+        \end{minipage}
+      \end{beamercolorbox}
+    \end{column}
+        \begin{column}{.49\textwidth}
+      \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
+        \begin{minipage}[T]{.95\textwidth}  % tweaks the width, makes a new \textwidth
+          \parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
+            % Since all columns are the same length, it is all nice and tidy.  You have to get the height empirically
+            % ---------------------------------------------------------%
+            % fill each column with content
+            \begin{block}{Introduction}
+              \begin{itemize}
+              \item Most face recognition approaches are sensitive to registration errors
+                \begin{itemize}
+                \item rely on a very good initial alignment and illumination
+                \end{itemize}
+              \item We propose/analyze:
+                \begin{itemize}
+                \item grid-based and dense extraction of local features
+                \item block-based matching accounting for different\\
+                    viewpoints and registration errors
+                \end{itemize}
+              \end{itemize}
+            \end{block}
+            \vfill
+            \begin{block}{Feature Extraction}
+              \begin{columns}
+                \begin{column}{.55\textwidth}
+                  \begin{itemize}
+                  \item Interest point based feature extraction
+                    \begin{itemize}
+                    \item SIFT or SURF interest point detector
+                    \item leads to a \alert{very sparse} description
+                    \end{itemize}
+                  \item Grid-based feature extraction
+                    \begin{itemize}
+                    \item overlaid regular grid
+                    \item leads to a \alert{dense} description
+                    \end{itemize}
+                  \end{itemize}
+                \end{column}
+                \begin{column}{.44\textwidth}
+                  \centering
+                  \begin{tabularx}{\linewidth}{ZZZ}
+                     Orig.
+                     &
+                     IP
+                     &
+                     Grid
+                     \\
+                    \includegraphics[width=0.95\linewidth]{images/viola/m-012-1.png}
+                    &
+                    \includegraphics[width=0.95\linewidth]{images/viola/surf-64x64-ip/m-012-1.pngsurf.png}
+                    &
+                    \includegraphics[width=0.95\linewidth]{images/viola/surf-64x64-4/m-012-1.pngsurf.png}
+                    \\
+                    \includegraphics[width=0.95\linewidth]{images/viola/m-012-2.png}
+                    &
+                    \includegraphics[width=0.95\linewidth]{images/viola/surf-64x64-ip/m-012-2.pngsurf.png}
+                    &
+                    \includegraphics[width=0.95\linewidth]{images/viola/surf-64x64-4/m-012-2.pngsurf.png}
+                    \\
+                  \end{tabularx}
+                \end{column}
+              \end{columns}
+              \vskip-1ex
+            \end{block}
+            \vfill
+            \begin{block}{Feature Description}
+              \begin{itemize}
+              \item Scale Invariant Feature Transform (SIFT)
+                \begin{itemize}
+                \item 128-dimensional descriptor, histogram of gradients, scale invariant
+                \end{itemize}
+              \item Speeded Up Robust Features (SURF)
+                \begin{itemize}
+                \item 64-dimensional descriptor, histogram of gradients, scale invariant
+                \end{itemize}
+              \item face recognition: invariance w.r.t. rotation is often not necessary
+                \begin{itemize}
+                \item rotation dependent upright-versions U-SIFT, U-SURF-64, U-SURF-128
+                \end{itemize}
+              \end{itemize}
+            \end{block}
+            \vfill
+            \begin{block}{Feature Matching}
+              \begin{itemize}
+              \item Recognition by Matching
+                \begin{itemize}
+                \item nearest neighbor matching strategy
+                \item descriptor vectors extracted at keypoints in a test image $X$ are compared to all descriptor vectors extracted at keypoints from the reference images $Y_n, n=1,\cdots,N$ by the Euclidean distance
+                \item decision rule:
+                  \begin{align*}
+                    X \rightarrow r(X) & = \arg \max_{c} \Big\{ \max_n \big\{ \sum_{x_i \in X} \delta(x_i,Y_{n,c})\big\} \Big\}
+                  \end{align*}
+                \item additionally, a ratio constraint is applied in $\delta(x_i,Y_{n,c})$
+                \end{itemize}
+              \item Viewpoint Matching Constraints
+                \begin{itemize}
+                \item maximum matching: unconstrained
+                \item grid-based matching: absolute box constraints
+                \item grid-based best matching: absolute box constraints, overlapping
+                \end{itemize}
+              \item Postprocessing
+                \begin{itemize}
+                \item RANSAC-based outlier removal
+                \item RANSAC-based system combination
+                \end{itemize}
+              \end{itemize}
+            \end{block}
+            \vfill
+            \begin{block}{Matching Examples for the AR-Face and CMU-PIE Database}
+              \begin{figure}
+                \footnotesize
+                \centering
+                \begin{tabular}{p{.09\linewidth} | p{.12\linewidth} | p{.12\linewidth} | p{.12\linewidth} || p{.12\linewidth} | p{.12\linewidth} | p{.12\linewidth} | p{.09\linewidth} }
+                  Feature
+                  &
+                  Maximum
+                  &
+                  Grid
+                  &
+                  Grid-Best
+                  &
+                  Maximum
+                  &
+                  Grid
+                  &
+                  Grid-Best
+                  &
+                  Feature
+                  \\
+                  \hline
+                  SIFT
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-sift/maximum_m-005-17.pgm--w-052-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-sift/grid_m-005-17.pgm--m-005-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-sift/grid-best_m-005-17.pgm--m-005-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-surf/maximum_07-27-22.pgm--04-27-08}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-surf/grid_07-27-22.pgm--07-27-08}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-surf/grid-best_07-27-22.pgm--07-27-08}
+                  &
+                  SURF
+                  \\
+                  \hline
+                  U-SIFT
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-usift/maximum_m-005-17.pgm--w-052-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-usift/grid_m-005-17.pgm--m-005-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/arface-usift/grid-best_m-005-17.pgm--m-005-4}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-usurf/maximum_07-27-22.pgm--04-27-08}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-usurf/grid_07-27-22.pgm--07-27-08}
+                  &
+                  \includegraphics[width=1.0\linewidth]{paper/bmvc09-surf/figures/matchings/cmupie-usurf/grid-best_07-27-22.pgm--07-27-08}
+                  &
+                  U-SURF
+                  \\
+                  \hline
+                \end{tabular}
+              \end{figure}
+              \begin{itemize}
+              \item Matching results for the AR-Face (left) and the CMU-PIE database (right)
+                \begin{itemize}
+                \item maximum matching show false classification examples
+                \item grid matchings show correct classification examples
+                \item upright descriptor versions reduce the number of false matches
+                \end{itemize}
+              \end{itemize}
+            \end{block}
+          }
+        \end{minipage}
+      \end{beamercolorbox}
+    \end{column}
     \begin{column}{.49\textwidth}
       \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
         \begin{minipage}[T]{.95\textwidth}  % tweaks the width, makes a new \textwidth
