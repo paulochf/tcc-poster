@@ -18,9 +18,6 @@
 % change list indention level
 % \setdefaultleftmargin{3em}{}{}{}{}{}
 
-\usepackage[backend=biber,bibencoding=utf8,style=numeric-comp]{biblatex}
-\bibliography{bibliografia.bib}
-
 \usepackage{array,booktabs,tabularx}
 \usepackage[unicode]{hyperref}
 
@@ -47,7 +44,7 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\graphicspath{{figs/}{figs/teste/}}
+\graphicspath{{figs/}}
 
 \title{\huge Anatomia do BitTorrent: a Ciência da Computação por trás do protocolo}
 \author{Paulo Cheadi Haddad Filho --- \,\mytilde paulochf}
@@ -95,9 +92,10 @@
                   \item protocolo P2P \textbf{mais usado no mundo}, que gera
                     $\approx \!\!\: 23 \%$ do tráfego de upload, $\approx \!\! 17 \%$ de
                     download e $\approx \!\! 10 \%$ de todo o tráfego na América Latina
-                    \cite{}
-                  \item usado por \textbf{Twitter} e \textbf{Facebook} para distribuir
-                    os códigos dos seus sites para seus servidores \cite{}
+                    \cite{sandvine}
+                  \item usado por \textbf{Twitter} \cite{torrentfreak:twitter} e
+                    \textbf{Facebook} \cite{torrentfreak:facebook} para distribuir
+                    os códigos dos seus sites para seus servidores
                   \item baseado em \textbf{trocas justas} de arquivos e
                     \textbf{comunicação eficiente} entre \emph{peers}
                   \item peers \textbf{sugadores} (\emph{leechers}) e \textbf{semeadores}
@@ -309,26 +307,45 @@
             \blockouterspace
 
             \begin{block}{Referências}
-              \begin{innercol}
-                \scriptsize{
-                  \begin{thebibliography}{99}
-                    \bibitem{WS}
-                      D.P. Williamson, and D.B. Shmoys,
-                    ``\textbf{The Design of Approximation Algorithms},'' \emph{Cambridge
-                      University Press}, 2011.
+             \begin{columns}
+                \hspace{-2.5ex}
+                \begin{column}{.97\textwidth}
+                  \justifying
+                  \scriptsize{
+                    \begin{thebibliography}{99}
+                      \bibitem{sandvine}
+                        Sandvine Inc.
+                        \textbf{Global Internet Phenomena Report --- 1H 2013}, 2013. \\
+                        \url{http://macaubas.com/wp-content/uploads/2013/05/Sandvine_Global_Internet_Phenomena_Report_1H_2013.pdf}
 
-                    \bibitem{HS}
-                    D.Hochbaum, and D.B.Shmoys,
-                    ``\textbf{A unified approach to approximation algorithms for bottleneck
-                    problems},'' in \emph{Journal of the ACM}, 1986, volume 33, pp. 533-550.
+                      \bibitem{torrentfreak:twitter}
+                        Ernesto.
+                        \textbf{BitTorrent Makes Twitter’s Server Deployment 75x Faster},
+                        16 de julho de 2013. \emph{TorrentFreak}\\
+                        \url{http://torrentfreak.com/bittorrent-makes-twitters-server-deployment-75-faster-100716/}
 
-                    \bibitem{CLRS}
-                    T.H.Cormen, C.E.Leiserson, R.L.Rivest, and C. Stein,
-                    ``\textbf{Introduction to algorithms}'', \emph{The MIT Press}, ed. 3, 2009.
+                      \bibitem{torrentfreak:facebook}
+                        Ernesto.
+                        \textbf{Facebook Uses BitTorrent, and They Love It},
+                        25 de junho de 2013. \emph{TorrentFreak}\\
+                        \url{http://torrentfreak.com/facebook-uses-bittorrent-and-they-love-it-100625/}
 
-                  \end{thebibliography}
-                }
-              \end{innercol}
+                      \bibitem{wiki:timeline}
+                        Wikipedia.
+                        \textbf{Timeline of file sharing} --- \emph{Wikipedia{,} The
+                        Free Encyclopedia}, 2013.
+                        \url{http://en.wikipedia.org/wiki/Timeline_of_file_sharing}
+
+                      \bibitem{swarming}
+                        Matheus B. Lehmann, Rodrigo B. Mansilha, Marinho P. Barcellos e
+                        Flávio Roberto Santos.
+                        \textbf{``Swarming: como BitTorrent revolucionou a Internet''}.
+                        Em \emph{Atualizações em Informática}. PUC-Rio. Vol. 1. Rio de
+                        Janeiro, 2011. Cap. 6, pp. 209–258
+                    \end{thebibliography}
+                  }
+                \end{column}
+              \end{columns}
             \end{block}
           }
         \end{minipage}
