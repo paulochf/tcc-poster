@@ -66,8 +66,16 @@
 %  \setbeamertemplate{itemize/enumerate body end}{
 %  }
 
-%\setbeamertemplate{enumerate item}{\insertenumlabel.}
-%\setbeamertemplate{enumerate subitem}{\insertenumlabel.\insertsubenumlabel}
+% set bibliography style
+\setbeamertemplate{bibliography item}[text]
+\setbeamercolor{bibliography item}{fg=black,bg=white}
+\setbeamercolor{bibliography entry author}{fg=black,bg=white}
+\setbeamercolor{bibliography item}{fg=black,bg=white}
+
+\setbeamercolor{item}{fg=ngreen}
+\setbeamercolor{item projected}{fg=white,bg=ngreen}
+\setbeamertemplate{enumerate item}{\insertenumlabel.}
+\setbeamertemplate{enumerate subitem}{\insertenumlabel.\insertsubenumlabel}
 %\setbeamertemplate{enumerate subsubitem}{\insertenumlabel.\insertsubenumlabel.\insertsubsubenumlabel}
 %\setbeamertemplate{enumerate mini template}{\insertenumlabel}
 \setbeamertemplate{itemize items}[triangle]

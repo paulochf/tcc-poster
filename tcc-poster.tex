@@ -18,10 +18,14 @@
 % change list indention level
 % \setdefaultleftmargin{3em}{}{}{}{}{}
 
+\usepackage[backend=biber,bibencoding=utf8,style=numeric-comp]{biblatex}
+\bibliography{bibliografia.bib}
+
 \usepackage{array,booktabs,tabularx}
 \usepackage[unicode]{hyperref}
 
-\usepackage{subcaption}                             % \begin{subfigure}
+\usepackage{subcaption}         % \begin{subfigure}
+\usepackage{wrapfig}            % \begin{wrapfigure}
 \usepackage{blindtext}
 
 % centered tabularx columns
@@ -70,14 +74,23 @@
             % fill each column with content
 
             \begin{block}{Introdução}
-              \begin{innercol}
-                As redes \emph{peer-to-peer} (P2P) são redes de arquitetura
+  \begin{innercol}
+    As redes \emph{peer-to-peer} (P2P) são redes de arquitetura
+    descentralizada (sem um servidor central) e distribuída entre vários
+    nós da rede (os \emph{peers}), os quais sugadores (\emph{leechers})
+    e semeadores (\emph{seeders}) trocam dados entre si. A primeira rede
+    P2P surgiu com o Napster, em 1999.
+  \end{innercol}
+
+              %\begin{innercol}
+                \begin{itemize}
+                  \item \textbf{redes \emph{peer-to-peer} (P2P)}: redes de arquitetura
                 descentralizada (sem um servidor central) e distribuída entre vários
-                nós da rede (os \emph{peers}), os quais consomem (sugadores ou
-                \emph{leechers}) e fornecem (semeadores ou \emph{seeders}) algum
-                recurso simultaneamente. A primeira rede P2P surgiu com o Napster, em
-                1999.
-              \end{innercol}
+                nós da rede (\emph{peers})
+                  \item \textbf{Napster} foi a primeira rede P2P, em 1999
+
+                \end{itemize}
+              %\end{innercol}
             \end{block}
 
             \blockouterspace
@@ -91,6 +104,20 @@
                 arquivos mais usado no mundo, sendo responsável por grande tráfego de
                 dados na Internet.
               \end{innercol}
+
+              \begin{itemize}
+                \item lançado por Bram Cohen em \textbf{2001}
+                \item protocolo P2P mais usado no mundo, que gera $\approx23\%$ do
+                tráfego de upload, $\approx17\%$ de download e $\approx10\%$ na América
+                Latina \cite{}
+                \item uso não-convencional: Twitter e Facebook distribuem o código pelos
+                  seus servidores \cite{}
+                \item baseado em trocas justas de arquivos e comunicação eficiente entre
+                  \emph{peers}
+                \item peers \textbf{sugadores} (\emph{leechers}) e \textbf{semeadores} (\emph{seeders}) trocam dados entre si
+                \item listas de \emph{peers} mantidas por rastreadores (\emph{trackers})
+                e geralmente pelos próprios \emph{peers}
+              \end{itemize}
             \end{block}
 
             \blockouterspace
@@ -103,27 +130,36 @@
                 %\label{fig:Gi}
               \end{figure}
 
-              \begin{innercol}
+              %\begin{innercol}
                 % Enumerate não tá funcionando =P
                 \begin{enumerate}
                   \item 1. busca de conteúdo em sites buscadores de torrent
                   \item 2. obtenção do arquivo .torrent desejado
                   \item 3. computador do usuário se comunica com rastreadores \\
-                  (\emph{trackers}), que mantêm listas dos \emph{peers} que estão
+                  (\emph{trackers}), que mantêm listas dos \emph{peers} que estão \\
                   compartilhando os arquivos do torrent obtido
                   \item 4. o \emph{tracker} devolve uma lista de \emph{peers} aleatória
                   \item 5. computador do usuário inicia comunicação com os \emph{peers}
-                  da lista, e começa a receber deles os arquivos pertencentes àquele
-                  torrent
+                  \\ da lista, e começa a receber deles os arquivos pertencentes \\
+                  àquele torrent
                 \end{enumerate}
-              \end{innercol}
+              %\end{innercol}
             \end{block}
 
             \blockouterspace
 
             \begin{block}{Transmission}
               \begin{innercol}
-                \blindtext
+                \begin{wrapfigure}{l}{.2\linewidth}
+                  \vspace{-1ex}
+                  \hspace{-1ex}
+                  \includegraphics[width=\linewidth]{transmission.png}
+                \end{wrapfigure}
+                O Transmission é um programa cliente do protoloco BitTorrent de código
+                aberto escrito em linguagem C e C++, com versões específicas desde
+                para linha de comando, \emph{daemon} (serviço em segundo plano),
+                roteadores e a comumente utilizada aplicação em janela para Linux e
+                OS X.
               \end{innercol}
             \end{block}
           }
@@ -277,7 +313,24 @@
 
             \begin{block}{Referências}
               \begin{innercol}
-                \blindenumerate[6]
+                \scriptsize{
+                  \begin{thebibliography}{99}
+                    \bibitem{WS}
+                      D.P. Williamson, and D.B. Shmoys,
+                    ``\textbf{The Design of Approximation Algorithms},'' \emph{Cambridge
+                      University Press}, 2011.
+
+                    \bibitem{HS}
+                    D.Hochbaum, and D.B.Shmoys,
+                    ``\textbf{A unified approach to approximation algorithms for bottleneck
+                    problems},'' in \emph{Journal of the ACM}, 1986, volume 33, pp. 533-550.
+
+                    \bibitem{CLRS}
+                    T.H.Cormen, C.E.Leiserson, R.L.Rivest, and C. Stein,
+                    ``\textbf{Introduction to algorithms}'', \emph{The MIT Press}, ed. 3, 2009.
+
+                  \end{thebibliography}
+                }
               \end{innercol}
             \end{block}
           }
