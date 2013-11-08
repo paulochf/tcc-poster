@@ -71,21 +71,31 @@
 
             \begin{block}{Introdução}
               \begin{innercol}
-                \blindtext
+                As redes \emph{peer-to-peer} (P2P) são redes de arquitetura
+                descentralizada (sem um servidor central) e distribuída entre vários
+                nós da rede (os \emph{peers}), os quais consomem (sugadores ou
+                \emph{leechers}) e fornecem (semeadores ou \emph{seeders}) algum
+                recurso simultaneamente. A primeira rede P2P surgiu com o Napster, em
+                1999.
               \end{innercol}
             \end{block}
 
             \blockouterspace
 
-            \begin{block}{Histórico}
+            \begin{block}{História do BitTorrent}
               \begin{innercol}
-                \blindtext
+                Em meados de 2001, Bram Cohen lançou o BitTorrent, rede P2P que se
+                baseia em trocas justas de arquivos entre usuários, e que se comunicam
+                de forma eficiente a fim de localizar mais fontes dos arquivos
+                desejados. Atualmente, após melhorias, é o meio de compartilhamento de
+                arquivos mais usado no mundo, sendo responsável por grande tráfego de
+                dados na Internet.
               \end{innercol}
             \end{block}
 
             \blockouterspace
 
-            \begin{block}{BitTorrent: visão do usuário}
+            \begin{block}{BitTorrent: visão do usuário e áreas da Computação}
               \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth]{funcionamento.png}
@@ -93,11 +103,20 @@
                 %\label{fig:Gi}
               \end{figure}
 
-              \begin{itemize}
-                \item passo 1
-                \item passo 2
-                \item passo 3
-              \end{itemize}
+              \begin{innercol}
+                % Enumerate não tá funcionando =P
+                \begin{enumerate}
+                  \item 1. busca de conteúdo em sites buscadores de torrent
+                  \item 2. obtenção do arquivo .torrent desejado
+                  \item 3. computador do usuário se comunica com rastreadores \\
+                  (\emph{trackers}), que mantêm listas dos \emph{peers} que estão
+                  compartilhando os arquivos do torrent obtido
+                  \item 4. o \emph{tracker} devolve uma lista de \emph{peers} aleatória
+                  \item 5. computador do usuário inicia comunicação com os \emph{peers}
+                  da lista, e começa a receber deles os arquivos pertencentes àquele
+                  torrent
+                \end{enumerate}
+              \end{innercol}
             \end{block}
 
             \blockouterspace
