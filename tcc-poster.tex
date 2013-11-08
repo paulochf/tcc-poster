@@ -74,76 +74,39 @@
             % fill each column with content
 
             \begin{block}{Introdução}
-  \begin{innercol}
-    As redes \emph{peer-to-peer} (P2P) são redes de arquitetura
-    descentralizada (sem um servidor central) e distribuída entre vários
-    nós da rede (os \emph{peers}), os quais sugadores (\emph{leechers})
-    e semeadores (\emph{seeders}) trocam dados entre si. A primeira rede
-    P2P surgiu com o Napster, em 1999.
-  \end{innercol}
-
-              %\begin{innercol}
+              \begin{innercol}
                 \begin{itemize}
+                  \justifying
                   \item \textbf{redes \emph{peer-to-peer} (P2P)}: redes de arquitetura
                 descentralizada (sem um servidor central) e distribuída entre vários
                 nós da rede (\emph{peers})
                   \item \textbf{Napster} foi a primeira rede P2P, em 1999
-
                 \end{itemize}
-              %\end{innercol}
+              \end{innercol}
             \end{block}
 
             \blockouterspace
 
             \begin{block}{História do BitTorrent}
               \begin{innercol}
-                Em meados de 2001, Bram Cohen lançou o BitTorrent, rede P2P que se
-                baseia em trocas justas de arquivos entre usuários, e que se comunicam
-                de forma eficiente a fim de localizar mais fontes dos arquivos
-                desejados. Atualmente, após melhorias, é o meio de compartilhamento de
-                arquivos mais usado no mundo, sendo responsável por grande tráfego de
-                dados na Internet.
+                \begin{itemize}
+                  \justifying
+                  \item lançado por Bram Cohen em \textbf{2001}
+                  \item protocolo P2P \textbf{mais usado no mundo}, que gera
+                    $\approx \!\!\: 23 \%$ do tráfego de upload, $\approx \!\! 17 \%$ de
+                    download e $\approx \!\! 10 \%$ de todo o tráfego na América Latina
+                    \cite{}
+                  \item usado por \textbf{Twitter} e \textbf{Facebook} para distribuir
+                    os códigos dos seus sites para seus servidores \cite{}
+                  \item baseado em \textbf{trocas justas} de arquivos e
+                    \textbf{comunicação eficiente} entre \emph{peers}
+                  \item peers \textbf{sugadores} (\emph{leechers}) e \textbf{semeadores}
+                    (\emph{seeders}) trocam dados entre si
+                  \item \textbf{listas de \emph{peers}} mantidas por
+                    \textbf{rastreadores} (\emph{trackers}) e, geralmente, pelos
+                    próprios \emph{peers}
+                \end{itemize}
               \end{innercol}
-
-              \begin{itemize}
-                \item lançado por Bram Cohen em \textbf{2001}
-                \item protocolo P2P mais usado no mundo, que gera $\approx23\%$ do
-                tráfego de upload, $\approx17\%$ de download e $\approx10\%$ na América
-                Latina \cite{}
-                \item uso não-convencional: Twitter e Facebook distribuem o código pelos
-                  seus servidores \cite{}
-                \item baseado em trocas justas de arquivos e comunicação eficiente entre
-                  \emph{peers}
-                \item peers \textbf{sugadores} (\emph{leechers}) e \textbf{semeadores} (\emph{seeders}) trocam dados entre si
-                \item listas de \emph{peers} mantidas por rastreadores (\emph{trackers})
-                e geralmente pelos próprios \emph{peers}
-              \end{itemize}
-            \end{block}
-
-            \blockouterspace
-
-            \begin{block}{BitTorrent: visão do usuário e áreas da Computação}
-              \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth]{funcionamento.png}
-                %\caption{Exemplo de grafo $G_i$.}
-                %\label{fig:Gi}
-              \end{figure}
-
-              %\begin{innercol}
-                % Enumerate não tá funcionando =P
-                \begin{enumerate}
-                  \item 1. busca de conteúdo em sites buscadores de torrent
-                  \item 2. obtenção do arquivo .torrent desejado
-                  \item 3. computador do usuário se comunica com rastreadores \\
-                  (\emph{trackers}), que mantêm listas dos \emph{peers} que estão \\
-                  compartilhando os arquivos do torrent obtido
-                  \item 4. o \emph{tracker} devolve uma lista de \emph{peers} aleatória
-                  \item 5. computador do usuário inicia comunicação com os \emph{peers}
-                  \\ da lista, e começa a receber deles os arquivos pertencentes \\
-                  àquele torrent
-                \end{enumerate}
-              %\end{innercol}
             \end{block}
 
             \blockouterspace
@@ -155,12 +118,46 @@
                   \hspace{-1ex}
                   \includegraphics[width=\linewidth]{transmission.png}
                 \end{wrapfigure}
-                O Transmission é um programa cliente do protoloco BitTorrent de código
-                aberto escrito em linguagem C e C++, com versões específicas desde
-                para linha de comando, \emph{daemon} (serviço em segundo plano),
-                roteadores e a comumente utilizada aplicação em janela para Linux e
-                OS X.
+
+                \begin{itemize}
+                  \justifying
+                  \vspace{-4ex}
+                  \item \textbf{programa cliente} de \textbf{código aberto} para o
+                    protocolo BitTorrent
+                  \item escrito nas linguagens \textbf{C} e \textbf{C++}
+                  \item \textbf{várias plataformas}: \emph{daemon} (serviço de segundo
+                    plano), roteadores, linha de comando e aplicação em janela
+                \end{itemize}
               \end{innercol}
+            \end{block}
+
+            \blockouterspace
+
+            \begin{block}{BitTorrent: visão do usuário e áreas da Computação}
+              \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth]{funcionamento.png}
+              \end{figure}
+
+              \begin{columns}
+                \hspace{-6ex}
+                \begin{column}{.97\textwidth}
+                  \begin{enumerate}
+                    % Enumerate não tá funcionando =P
+                    \justifying
+                    \item \textbf{1.} busca de conteúdo em sites buscadores de torrent
+                    \item \textbf{2.} obtenção do arquivo .torrent desejado
+                    \item \textbf{3.} computador do usuário se comunica com rastreadores
+                      (\emph{trackers}), que mantêm listas dos \emph{peers} que estão
+                      compartilhando os arquivos do torrent obtido
+                    \item \textbf{4.} o \emph{tracker} devolve uma lista de \emph{peers}
+                      aleatória
+                    \item \textbf{5.} computador do usuário inicia comunicação com os
+                      \emph{peers} da lista, e começa a receber deles os arquivos
+                      pertencentes àquele torrent
+                  \end{enumerate}
+                \end{column}
+              \end{columns}
             \end{block}
           }
         \end{minipage}
