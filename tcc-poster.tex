@@ -18,6 +18,7 @@
 % change list indention level
 % \setdefaultleftmargin{3em}{}{}{}{}{}
 
+\usepackage{upquote}
 \usepackage{array,booktabs,tabularx}
 \usepackage[unicode]{hyperref}
 
@@ -34,9 +35,11 @@
 
 \newcommand{\blockouterspace}{\vskip1ex}
 
-\newenvironment{innercol}{
+\newenvironment{innercol}[3][.97\textwidth]{
 \begin{columns}
-  \begin{column}{.93\textwidth}
+  \hspace{#2}
+  \begin{column}{#1}
+    \vspace{#3}
     \justifying
 }{
   \end{column}
@@ -70,13 +73,28 @@
             % ---------------------------------------------------------%
             % fill each column with content
 
+            \begin{block}{Objetivo}
+              \begin{innercol}{-4ex}{-1.4ex}
+                \begin{itemize}
+                  \justifying
+                  \item \textbf{estudar} o protocolo do BitTorrent
+                  \item \textbf{identificar} seu caráter interdisciplinar na Computação
+                    pelo estudo de seus componentes internos
+                  \item \textbf{ilustrar} a implementação desses componentes utilizando
+                    o código fonte do cliente Transmission
+                \end{itemize}
+              \end{innercol}
+            \end{block}
+
+            \blockouterspace
+
             \begin{block}{Introdução}
-              \begin{innercol}
+              \begin{innercol}{-4ex}{-1.4ex}
                 \begin{itemize}
                   \justifying
                   \item \textbf{redes \emph{peer-to-peer} (P2P)}: redes de arquitetura
                 descentralizada (sem um servidor central) e distribuída entre vários
-                nós da rede (\emph{peers})
+                nós da rede \\ (\emph{peers})
                   \item \textbf{Napster} foi a primeira rede P2P, em 1999
                 \end{itemize}
               \end{innercol}
@@ -85,21 +103,27 @@
             \blockouterspace
 
             \begin{block}{História do BitTorrent}
-              \begin{innercol}
+              \begin{innercol}{-4ex}{-1.4ex}
                 \begin{itemize}
                   \justifying
                   \item lançado por Bram Cohen em \textbf{2001}
+
                   \item protocolo P2P \textbf{mais usado no mundo}, que gera
                     $\approx \!\!\: 23 \%$ do tráfego de upload, $\approx \!\! 17 \%$ de
                     download e $\approx \!\! 10 \%$ de todo o tráfego na América Latina
                     \cite{sandvine}
+
                   \item usado por \textbf{Twitter} \cite{torrentfreak:twitter} e
                     \textbf{Facebook} \cite{torrentfreak:facebook} para distribuir
                     os códigos dos seus sites para seus servidores
+
                   \item baseado em \textbf{trocas justas} de arquivos e
                     \textbf{comunicação eficiente} entre \emph{peers}
+
                   \item peers \textbf{sugadores} (\emph{leechers}) e \textbf{semeadores}
-                    (\emph{seeders}) trocam dados entre si
+                    (\emph{seeders}), pertencentes a um \textbf{enxame} (\emph{swarm}),
+                    \textbf{trocam partes} de um torrent entre si
+
                   \item \textbf{listas de \emph{peers}} mantidas por
                     \textbf{rastreadores} (\emph{trackers}) e, geralmente, pelos
                     próprios \emph{peers}
@@ -110,16 +134,15 @@
             \blockouterspace
 
             \begin{block}{Transmission}
-              \begin{innercol}
-                \begin{wrapfigure}{l}{.2\linewidth}
+              \begin{innercol}{-4ex}{-1.4ex}
+                \begin{wrapfigure}{r}{.2\linewidth}
                   \vspace{-1ex}
-                  \hspace{-1ex}
                   \includegraphics[width=\linewidth]{transmission.png}
                 \end{wrapfigure}
 
                 \begin{itemize}
                   \justifying
-                  \vspace{-4ex}
+                  \vspace{-3ex}
                   \item \textbf{programa cliente} de \textbf{código aberto} para o
                     protocolo BitTorrent
                   \item escrito nas linguagens \textbf{C} e \textbf{C++}
@@ -137,25 +160,22 @@
                 \includegraphics[width=\textwidth]{funcionamento.png}
               \end{figure}
 
-              \begin{columns}
-                \hspace{-6ex}
-                \begin{column}{.97\textwidth}
-                  \begin{enumerate}
-                    % Enumerate não tá funcionando =P
-                    \justifying
-                    \item \textbf{1.} busca de conteúdo em sites buscadores de torrent
-                    \item \textbf{2.} obtenção do arquivo .torrent desejado
-                    \item \textbf{3.} computador do usuário se comunica com rastreadores
-                      (\emph{trackers}), que mantêm listas dos \emph{peers} que estão
-                      compartilhando os arquivos do torrent obtido
-                    \item \textbf{4.} o \emph{tracker} devolve uma lista de \emph{peers}
-                      aleatória
-                    \item \textbf{5.} computador do usuário inicia comunicação com os
-                      \emph{peers} da lista, e começa a receber deles os arquivos
-                      pertencentes àquele torrent
-                  \end{enumerate}
-                \end{column}
-              \end{columns}
+              \begin{innercol}{-6ex}{-2ex}
+                \begin{enumerate}
+                  % Enumerate não tá funcionando =P
+                  \justifying
+                  \item \textbf{1.} busca de conteúdo em sites buscadores de torrent
+                  \item \textbf{2.} obtenção do arquivo .torrent desejado
+                  \item \textbf{3.} computador do usuário se comunica com rastreadores
+                    (\emph{trackers}), que mantêm listas dos \emph{peers} que estão
+                    compartilhando os arquivos do torrent obtido
+                  \item \textbf{4.} o \emph{tracker} devolve uma lista de \emph{peers}
+                    aleatória
+                  \item \textbf{5.} computador do usuário inicia comunicação com os
+                    \emph{peers} da lista, e começa a receber deles os arquivos
+                    pertencentes àquele torrent
+                \end{enumerate}
+              \end{innercol}
             \end{block}
           }
         \end{minipage}
@@ -175,30 +195,74 @@
             % fill each column with content
 
             \begin{block}{BitTorrent: visão da Internet}
-              \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth]{universobt.png}
-                %\caption{Exemplo de grafo $G_i$.}
-                %\label{fig:Gi}
-              \end{figure}
+              \begin{innercol}[.99\textwidth]{2ex}{0ex}
+                \begin{figure}
+                  \centering
+                  \includegraphics[width=\textwidth]{universobt.png}
+                  %\caption{Exemplo de grafo $G_i$.}
+                  %\label{fig:Gi}
+                \end{figure}
+              \end{innercol}
             \end{block}
 
             \blockouterspace
 
-            \begin{block}{Funcionamento do BitTorrent}
-              \begin{columns}[t,\textwidth]
-                \begin{column}{.46\textwidth}
-                  \justifying
-                  \blindtext
-                  \blindtext
-                \end{column}
+            \begin{block}{Trocas das partes de um arquivo torrent em um swarm}
+              \begin{innercol}[\textwidth]{-2ex}{0ex}
+                \begin{figure}[H]
+                  \vspace{-1.75ex}
+                  \newlength{\myvsize}
+                  \newlength{\myhsize}
+                  \setlength{\myvsize}{1.5mm}
+                  \setlength{\myhsize}{.235\textwidth}
 
-                \begin{column}{.46\textwidth}
-                  \justifying
-                  \blindtext
-                  \blindtext
-                \end{column}
-              \end{columns}
+                  \centering
+
+                  \begin{subfigure}[H]{\myhsize}
+                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-0.png}}
+                  \end{subfigure}%
+                  \quad %add desired spacing between images (~, \quad, \qquad or blank line)
+                  \begin{subfigure}[H]{\myhsize}
+                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-1.png}}
+                  \end{subfigure}%
+                  \quad
+                  \begin{subfigure}[H]{\myhsize}
+                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-2.png}}
+                  \end{subfigure}%
+                  \quad
+                  \begin{subfigure}[H]{\myhsize}
+                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-3.png}}
+                  \end{subfigure}%
+
+                  \vspace{\myvsize}
+
+                  \begin{subfigure}[H]{\myhsize}
+                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-4.png}}
+                  \end{subfigure}%
+                  \quad
+                  \begin{subfigure}[H]{\myhsize}
+                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-5.png}}
+                  \end{subfigure}%
+                  \quad
+                  \begin{subfigure}[H]{\myhsize}
+                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-6.png}}
+                  \end{subfigure}%
+                  \quad
+                  \begin{subfigure}[H]{\myhsize}
+                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-7.png}}
+                  \end{subfigure}%
+
+                  \vspace{\myvsize}
+
+                  \begin{subfigure}[H]{\myhsize}
+                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-8.png}}
+                  \end{subfigure}%
+                  \quad
+                  \begin{subfigure}[H]{\myhsize}
+                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-9.png}}
+                  \end{subfigure}%
+                \end{figure}
+              \end{innercol}
             \end{block}
           }
         \end{minipage}
@@ -217,135 +281,126 @@
             % ---------------------------------------------------------%
             % fill each column with content
 
-            \begin{block}{Anatomia}
-              \begin{innercol}
-                \blindenumerate[10]
+            \begin{block}{Funcionamento do BitTorrent}
+              \begin{innercol}{-6ex}{-1.4ex}
+                \begin{enumerate}
+                  \justifying
+                  \item \textbf{1.} \textbf{busca} de conteúdo em sites buscadores de
+                  torrent
+
+                  \item \textbf{2.} \textbf{obtenção} do arquivo .torrent, que é um
+                    \textbf{dicionário de dados} sobre os arquivos desejados, onde estão
+                    contidas informações como \emph{announces} (endereços de
+                    \emph{trackers}), número de partes e lista dos arquivos
+
+                  \item \textbf{3.} \textbf{cliente BitTorrent} usa o \emph{announce}
+                    para fazer um pedido de \emph{peers}, usando uma \textbf{requisição HTTP GET} e passando dois identificadores: um seu e o do torrent \\
+                    Ex: \url{udp://tracker.publicbt.com:80/announce?info_hash=<hash-do-torrent>&peer_id=<hash-do-cliente>}
+
+                  \item \textbf{4.} o \textbf{\emph{tracker} adiciona} o \emph{peer}
+                    requisitante à sua lista e \textbf{devolve} para ele um dicionário
+                    contendo: uma \textbf{lista aleatória de outros \emph{peers}} para
+                    aquele identificador de torrent, quantidades de \emph{peers},
+                    \emph{seeders} e \emph{leechers}, entre outros dados \\
+                    Ex: \{`complete': 1, `downloaded': 11, `incomplete': 6, `interval':
+                    1732, `min interval': 866, `peers': \{lista-de-hash-ids-de-peers\}\}
+
+                  \item \textbf{5.} o \textbf{cliente}, para entrar no \emph{swarm},
+                    \textbf{envia mensagens} para cada um dos \emph{peers} recebidos,
+                    até obter uma resposta
+
+                  \begin{enumerate}
+                    \item \textbf{5.1} quando \textbf{obtém resposta}, \textbf{adiciona
+                      o endereço} desta à sua ``lista de contatos'', que é
+                      acessível por outros \emph{peers}, e implementada como uma tabela
+                      hash especial, do algoritmo Kademlia. Esse algoritmo faz com que
+                      uma busca por \emph{novos peers} seja distribuída entre os que já
+                      são conhecidos, formando assim uma grande ``lista telefônica''.
+                      Essa estrutura de dados é chamada de \textbf{tabela hash
+                      distribuída (DHT)}
+
+                    \item \textbf{5.2} após o primeiro contato, o \textbf{cliente
+                      entra} no \emph{swarm} e \textbf{recebe} uma parte aleatória do
+                      torrent, se tornando um \emph{leecher}
+
+                    \item \textbf{5.3} como \emph{leecher}, o \textbf{cliente entra} no
+                      ``jogo de trocas'' do \emph{swarm}, onde \textbf{só recebe uma
+                      parte do torrent se fornecer outra}
+
+                    \item \textbf{5.4} ao \textbf{término} do download, o usuário
+                      \textbf{se torna um \emph{seeder}}, passando a unicamente
+                      fornecer partes do torrent
+                  \end{enumerate}
+                \end{enumerate}
               \end{innercol}
             \end{block}
 
             \blockouterspace
 
-            \begin{block}{Simulação}
-              \begin{innercol}
-                \begin{figure}[H]
-                  \newlength{\myvsize}
-                  \newlength{\myhsize}
-                  \setlength{\myvsize}{4mm}
-                  \setlength{\myhsize}{.3\textwidth}
+            \begin{block}{ABC no BCC: disciplinas relacionadas}
+              \begin{innercol}{-4ex}{-1.4ex}
+                \begin{itemize}
+                  \justifying
+                  \item \textbf{Desenv. de Algoritmos, Estrutura de Dados, Análise de \\
+                    Algoritmos}: tabela hash (DHT), listas ligadas, árvores e
+                    estruturas compostas
 
-                  \centering
+                  \item \textbf{Prog. para Redes}: protocolos de rede HTTP e UDP,
+                    segurança SSL, conexões de rede IPv4 e IPv6, roteamento (NAT PMP),
+                    troca de mensagens entre \emph{peers}, descoberta de \emph{peers}
+                    locais (Multicast)
 
-                  \begin{subfigure}[H]{\myhsize}
-                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-0.png}}
-                    \caption{}
-                    \label{fig:torrent-repr-0}
-                  \end{subfigure}%
-                  \quad %add desired spacing between images (~, \quad, \qquad or blank line)
-                  \begin{subfigure}[H]{\myhsize}
-                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-1.png}}
-                    \caption{}
-                    \label{fig:torrent-repr-1}
-                  \end{subfigure}%
-                  \quad
-                  \begin{subfigure}[H]{\myhsize}
-                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-2.png}}
-                    \caption{}
-                    \label{fig:torrent-repr-2}
-                  \end{subfigure}
+                  \item \textbf{Intro. à Criptografia}: integridade e privacidade de
+                    dados (SHA-1, RC4)
 
-                  \vspace{\myvsize}
+                  \item \textbf{Sistemas Operacionais, Prog. Concorrente, Intro. à Comp.
+                    Paralela e Distribuída}: \emph{threads}, DHT, leitura e escrita de
+                    partes de arquivo, retomada de download (\emph{download resume})
 
-                  \begin{subfigure}[H]{\myhsize}
-                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-3.png}}
-                    \caption{}
-                    \label{fig:torrent-repr-3}
-                  \end{subfigure}%
-                  \quad
-                  \begin{subfigure}[H]{\myhsize}
-                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-4.png}}
-                    \caption{}
-                    \label{fig:torrent-repr-4}
-                  \end{subfigure}%
-                  \quad
-                  \begin{subfigure}[H]{\myhsize}
-                  \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-5.png}}
-                  \caption{}
-                  \label{fig:torrent-repr-5}
-                  \end{subfigure}
-
-                  \vspace{\myvsize}
-
-                  \begin{subfigure}[H]{\myhsize}
-                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-6.png}}
-                    \caption{}
-                    \label{fig:torrent-repr-6}
-                  \end{subfigure}%
-                  \quad
-                  \begin{subfigure}[H]{\myhsize}
-                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-7.png}}
-                    \caption{}
-                    \label{fig:torrent-repr-7}
-                  \end{subfigure}%
-                  \quad
-                  \begin{subfigure}[H]{\myhsize}
-                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-8.png}}
-                    \caption{}
-                    \label{fig:torrent-repr-8}
-                  \end{subfigure}
-
-                  \vspace{\myvsize}
-
-                  \begin{subfigure}[H]{\myhsize}
-                    \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-9.png}}
-                    \caption{}
-                    \label{fig:torrent-repr-9}
-                  \end{subfigure}
-                \end{figure}
+                  \item \textbf{Lab. de Programação 1--2}: organização do código,
+                    Automake, \\ Autoconf, testes de código
+                \end{itemize}
               \end{innercol}
             \end{block}
 
             \blockouterspace
 
             \begin{block}{Referências}
-             \begin{columns}
-                \hspace{-2.5ex}
-                \begin{column}{.97\textwidth}
-                  \justifying
-                  \scriptsize{
-                    \begin{thebibliography}{99}
-                      \bibitem{sandvine}
-                        Sandvine Inc.
-                        \textbf{Global Internet Phenomena Report --- 1H 2013}, 2013. \\
-                        \url{http://macaubas.com/wp-content/uploads/2013/05/Sandvine_Global_Internet_Phenomena_Report_1H_2013.pdf}
+              \begin{innercol}{-2.5ex}{0ex}
+                \small{
+                  \begin{thebibliography}{99}
+                    \bibitem{sandvine}
+                      Sandvine Inc.
+                      \textbf{Global Internet Phenomena Report --- 1H 2013}, 2013. \\
+                      \url{http://macaubas.com/wp-content/uploads/2013/05/Sandvine_Global_Internet_Phenomena_Report_1H_2013.pdf}
 
-                      \bibitem{torrentfreak:twitter}
-                        Ernesto.
-                        \textbf{BitTorrent Makes Twitter’s Server Deployment 75x Faster},
-                        16 de julho de 2013. \emph{TorrentFreak}\\
-                        \url{http://torrentfreak.com/bittorrent-makes-twitters-server-deployment-75-faster-100716/}
+                    \bibitem{torrentfreak:twitter}
+                      Ernesto.
+                      \textbf{BitTorrent Makes Twitter’s Server Deployment 75x Faster},
+                      16 de julho de 2013. \emph{TorrentFreak}\\
+                      \url{http://torrentfreak.com/bittorrent-makes-twitters-server-deployment-75-faster-100716/}
 
-                      \bibitem{torrentfreak:facebook}
-                        Ernesto.
-                        \textbf{Facebook Uses BitTorrent, and They Love It},
-                        25 de junho de 2013. \emph{TorrentFreak}\\
-                        \url{http://torrentfreak.com/facebook-uses-bittorrent-and-they-love-it-100625/}
+                    \bibitem{torrentfreak:facebook}
+                      Ernesto.
+                      \textbf{Facebook Uses BitTorrent, and They Love It},
+                      25 de junho de 2013. \emph{TorrentFreak}\\
+                      \url{http://torrentfreak.com/facebook-uses-bittorrent-and-they-love-it-100625/}
 
-                      \bibitem{wiki:timeline}
-                        Wikipedia.
-                        \textbf{Timeline of file sharing} --- \emph{Wikipedia{,} The
-                        Free Encyclopedia}, 2013.
-                        \url{http://en.wikipedia.org/wiki/Timeline_of_file_sharing}
+                    \bibitem{wiki:timeline}
+                      Wikipedia.
+                      \textbf{Timeline of file sharing} --- \emph{Wikipedia{,} The
+                      Free Encyclopedia}, 2013.
+                      \url{http://en.wikipedia.org/wiki/Timeline_of_file_sharing}
 
-                      \bibitem{swarming}
-                        Matheus B. Lehmann, Rodrigo B. Mansilha, Marinho P. Barcellos e
-                        Flávio Roberto Santos.
-                        \textbf{``Swarming: como BitTorrent revolucionou a Internet''}.
-                        Em \emph{Atualizações em Informática}. PUC-Rio. Vol. 1. Rio de
-                        Janeiro, 2011. Cap. 6, pp. 209–258
-                    \end{thebibliography}
-                  }
-                \end{column}
-              \end{columns}
+                    \bibitem{swarming}
+                      Matheus B. Lehmann, Rodrigo B. Mansilha, Marinho P. Barcellos e
+                      Flávio Roberto Santos.
+                      \textbf{``Swarming: como BitTorrent revolucionou a Internet''}.
+                      Em \emph{Atualizações em Informática}. PUC-Rio. Vol. 1. Rio de
+                      Janeiro, 2011. Cap. 6, pp. 209–258
+                  \end{thebibliography}
+                }
+              \end{innercol}
             \end{block}
           }
         \end{minipage}
