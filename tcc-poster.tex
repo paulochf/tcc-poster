@@ -81,7 +81,7 @@
                   \item \textbf{identificar} seu caráter interdisciplinar na Computação
                     pelo estudo de seus componentes internos
                   \item \textbf{ilustrar} a implementação desses componentes utilizando
-                    o código fonte do cliente Transmission
+                    o código-fonte do cliente Transmission
                 \end{itemize}
               \end{innercol}
             \end{block}
@@ -214,7 +214,7 @@
                   \newlength{\myvsize}
                   \newlength{\myhsize}
                   \setlength{\myvsize}{1.5mm}
-                  \setlength{\myhsize}{.235\textwidth}
+                  \setlength{\myhsize}{.23\textwidth}
 
                   \centering
 
@@ -261,6 +261,7 @@
                   \begin{subfigure}[H]{\myhsize}
                     \fbox{\includegraphics[width=\textwidth]{Torrentcomp_small-9.png}}
                   \end{subfigure}%
+                  \caption*{\emph{Fonte: Wikipedia} --- \url{http://en.wikipedia.org/wiki/File:Torrentcomp_small.gif}}
                 \end{figure}
               \end{innercol}
             \end{block}
@@ -294,14 +295,15 @@
                     \emph{trackers}), número de partes e lista dos arquivos
 
                   \item \textbf{3.} \textbf{cliente BitTorrent} usa o \emph{announce}
-                    para fazer um pedido de \emph{peers}, usando uma \textbf{requisição HTTP GET} e passando dois identificadores: um seu e o do torrent \\
-                    Ex: \url{udp://tracker.publicbt.com:80/announce?info_hash=<hash-do-torrent>&peer_id=<hash-do-cliente>}
+                    para fazer um pedido de \emph{peers}, usando uma \textbf{requisição
+                    HTTP GET} e passando dois identificadores: um seu e o do torrent \\
+                    \flushleft Ex: \url{http://tracker.publicbt.com:80/announce?info_hash=<hash-do-torrent>&peer_id=<hash-do-cliente>}
 
                   \item \textbf{4.} o \textbf{\emph{tracker} adiciona} o \emph{peer}
                     requisitante à sua lista e \textbf{devolve} para ele um dicionário
                     contendo: uma \textbf{lista aleatória de outros \emph{peers}} para
-                    aquele identificador de torrent, quantidades de \emph{peers},
-                    \emph{seeders} e \emph{leechers}, entre outros dados \\
+                    aquele identificador de torrent, quantidades de \emph{seeders} e
+                    \emph{leechers}, entre outros dados \\
                     Ex: \{`complete': 1, `downloaded': 11, `incomplete': 6, `interval':
                     1732, `min interval': 866, `peers': \{lista-de-hash-ids-de-peers\}\}
 
@@ -310,6 +312,7 @@
                     até obter uma resposta
 
                   \begin{enumerate}
+                    \justifying
                     \item \textbf{5.1} quando \textbf{obtém resposta}, \textbf{adiciona
                       o endereço} desta à sua ``lista de contatos'', que é
                       acessível por outros \emph{peers}, e implementada como uma tabela
